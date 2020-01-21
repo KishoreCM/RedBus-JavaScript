@@ -14,7 +14,7 @@ function getPlaces() {
         }
     };
 
-    req.open("GET", "https://api.jsonbin.io/b/5e2193c65df640720836f40a/1", true);
+    req.open("GET", "https://api.jsonbin.io/b/5e2193c65df640720836f40a/2", true);
     req.setRequestHeader("secret-key", secretKey);
     req.send();
 
@@ -92,7 +92,9 @@ function listBuses() {
             console.log(busesAvailable.inv[0].StdBp);
             console.log(busesAvailable.inv[0].StdDp);
             console.log(busesAvailable.inv[0].WnSt);
-            console.log(busesAvailable.inv[0].nsa);        
+            console.log(busesAvailable.inv[0].nsa);    
+            localStorage.setItem("busesAvailable", JSON.stringify(busesAvailable));
+            redirect();
         }
     }
     req.open("POST", apiurl, true);   
@@ -109,4 +111,9 @@ function searchBus() {
 
 window.onload = () => {
     getPlaces();
+}
+
+
+function redirect() {
+    window.location.href = "displaybuses.html";    
 }
